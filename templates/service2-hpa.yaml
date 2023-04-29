@@ -1,0 +1,18 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: '{{.Values.microservices[1].serviceName}}'
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: '{{.Values.microservices[1].serviceName}}'
+  minReplicas: '{{.Values.microservices[1].minReplicas}}'
+  maxReplicas: '{{.Values.microservices[1].maxReplicas}}'
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50

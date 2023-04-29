@@ -1,0 +1,27 @@
+appName: my-app
+version: 1.0.0
+hostName: example.com
+clusterURL: https://kubernetes.example.com
+microservices:
+- serviceName: service1
+  avgReplicas: 2
+  minReplicas: 1
+  maxReplicas: 5
+  dockerImage: mydocker/image1:latest
+  containerPort: 8080
+  envs:
+  - name: ENV_VAR1
+    value: value1
+  - name: ENV_VAR2
+    value: value2
+- serviceName: service2
+  avgReplicas: 1
+  minReplicas: 1
+  maxReplicas: 3
+  dockerImage: mydocker/image2:latest
+  containerPort: 8080
+  envs:
+  - name: ENV_VAR1
+    value: value3
+  - name: ENV_VAR2
+    value: value4
