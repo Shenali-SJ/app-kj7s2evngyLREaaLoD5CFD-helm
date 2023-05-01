@@ -1,27 +1,24 @@
 appName: my-app
 version: 1.0.0
 hostName: example.com
-clusterURL: https://kubernetes.example.com
+clusterURL: https://kubernetes.default.svc
 microservices:
-- serviceName: service1
+- configs:
+  - mysql
+  serviceName: order-service
   avgReplicas: 2
   minReplicas: 1
   maxReplicas: 5
-  dockerImage: mydocker/image1:latest
+  dockerImage: shenalisj/spring-crud-tute:latest
   containerPort: 8080
   envs:
-  - name: ENV_VAR1
-    value: value1
-  - name: ENV_VAR2
-    value: value2
-- serviceName: service2
-  avgReplicas: 1
-  minReplicas: 1
-  maxReplicas: 3
-  dockerImage: mydocker/image2:latest
-  containerPort: 8080
-  envs:
-  - name: ENV_VAR1
-    value: value3
-  - name: ENV_VAR2
-    value: value4
+  - name: MYSQL_ROOT_PASSWORD
+    value: root
+  - name: MYSQL_DATABASE
+    value: OrdersDB
+  - name: DB_HOST
+    value: mysql
+  - name: DB_USERNAME
+    value: root
+  - name: DB_PASSWORD
+    value: shen21li
